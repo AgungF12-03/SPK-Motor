@@ -28,7 +28,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect('/home');
+        # fungsi: setelah login, admin masuk ke halaman admin dan user biasa masuk ke halaman home.
+        if ($request->user()->role === 'admin') {
+            return redirect()->route('admin.dashboard');
+        }
+
+        return redirect()->route('home');
     }
 
     /**

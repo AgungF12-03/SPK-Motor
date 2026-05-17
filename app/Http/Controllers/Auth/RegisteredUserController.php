@@ -46,6 +46,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        # fungsi: akun baru selalu diarahkan ke halaman home sebagai user biasa.
+        return redirect()->route('home');
     }
 }

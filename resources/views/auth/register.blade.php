@@ -1,52 +1,82 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
-
-        <!-- Name -->
+    <div class="space-y-6">
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <h2 class="text-2xl font-bold text-slate-900">Daftar Akun Baru</h2>
+            <p class="mt-1 text-sm text-slate-600">Sudah punya akun? <a href="{{ route('login') }}" class="font-medium text-blue-600 hover:text-blue-700">Masuk di sini</a></p>
         </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+        <form method="POST" action="{{ route('register') }}" class="form-stack">
+            @csrf
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <!-- Name -->
+            <div>
+                <x-input-label for="name" :value="__('Nama Lengkap')" />
+                <x-text-input 
+                    id="name" 
+                    type="text" 
+                    name="name" 
+                    :value="old('name')" 
+                    class="form-input"
+                    required 
+                    autofocus 
+                    autocomplete="name" 
+                />
+                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            </div>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+            <!-- Email Address -->
+            <div>
+                <x-input-label for="email" :value="__('Email Anda')" />
+                <x-text-input 
+                    id="email" 
+                    type="email" 
+                    name="email" 
+                    :value="old('email')" 
+                    class="form-input"
+                    required 
+                    autocomplete="username" 
+                />
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            </div>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+            <!-- Password -->
+            <div>
+                <x-input-label for="password" :value="__('Password')" />
+                <x-text-input 
+                    id="password" 
+                    type="password"
+                    name="password" 
+                    class="form-input"
+                    required 
+                    autocomplete="new-password" 
+                />
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <!-- Confirm Password -->
+            <div>
+                <x-input-label for="password_confirmation" :value="__('Konfirmasi Password')" />
+                <x-text-input 
+                    id="password_confirmation" 
+                    type="password"
+                    name="password_confirmation" 
+                    class="form-input"
+                    required 
+                    autocomplete="new-password" 
+                />
+                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+            </div>
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+            <!-- Submit -->
+            <div class="flex items-center justify-between pt-2">
+                <a class="text-sm text-blue-600 hover:text-blue-700 font-medium" href="{{ route('login') }}">
+                    {{ __('Sudah punya akun?') }}
+                </a>
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
+                <x-primary-button>
+                    {{ __('Daftar') }}
+                </x-primary-button>
+            </div>
+        </form>
+    </div>
 </x-guest-layout>

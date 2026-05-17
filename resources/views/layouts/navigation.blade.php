@@ -12,9 +12,17 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    {{-- # fungsi: menu Home tersedia untuk semua user yang sudah login. --}}
+                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                        {{ __('Home') }}
                     </x-nav-link>
+
+                    {{-- # fungsi: menu Admin hanya muncul jika role akun adalah admin. --}}
+                    @if (Auth::user()->role === 'admin')
+                        <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.*')">
+                            {{ __('Admin') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -67,9 +75,15 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                {{ __('Home') }}
             </x-responsive-nav-link>
+
+            @if (Auth::user()->role === 'admin')
+                <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.*')">
+                    {{ __('Admin') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

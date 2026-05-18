@@ -9,6 +9,14 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+// Route untuk clear cache (hanya untuk development)
+Route::get('/clear-cache', function () {
+    \Illuminate\Support\Facades\Artisan::call('cache:clear');
+    \Illuminate\Support\Facades\Artisan::call('config:clear');
+    \Illuminate\Support\Facades\Artisan::call('view:clear');
+    return 'Cache cleared! <a href="/home">Go back to home</a>';
+});
+
 
 # fungsi: route di bawah ini hanya dapat dibuka oleh user yang sudah login.
 Route::middleware(['auth'])->group(function () {

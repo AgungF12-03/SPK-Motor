@@ -21,8 +21,8 @@
             <div class="stat-label">Pengguna Terdaftar</div>
         </div>
         <div class="stat-card">
-            <div class="stat-value">-</div>
-            <div class="stat-label">Status Sistem</div>
+            <div class="stat-value">✓</div>
+            <div class="stat-label">Sistem Aktif</div>
         </div>
     </div>
 
@@ -36,7 +36,7 @@
                 {{ $content?->description ?? 'Sistem ini dirancang untuk membantu pengguna dalam membuat keputusan terkait penanganan kerusakan mesin kendaraan bermotor menggunakan metode SAW.' }}
             </p>
             <div class="button-row">
-                <button class="btn-primary">Mulai Diagnosis</button>
+                <a href="#" class="btn-primary">Mulai Diagnosis</a>
             </div>
         </div>
 
@@ -50,8 +50,11 @@
             </p>
             <p class="text-sm mt-3">
                 <strong>Tipe Akun:</strong><br>
-                <span class="text-slate-600 capitalize">{{ auth()->user()->role === 'admin' ? 'Administrator' : 'Pengguna Biasa' }}</span>
+                <span class="inline-block mt-1 px-3 py-1 rounded-full text-sm {{ auth()->user()->role === 'admin' ? 'bg-blue-100 text-blue-800' : 'bg-slate-100 text-slate-800' }} font-medium">
+                    {{ auth()->user()->role === 'admin' ? 'Administrator' : 'Pengguna Biasa' }}
+                </span>
             </p>
+            <p class="text-sm text-slate-500 mt-4">{{ auth()->user()->role === 'admin' ? 'Anda memiliki akses penuh ke sistem.' : 'Gunakan sistem untuk membuat diagnosis dan melihat riwayat Anda.' }}</p>
             <div class="button-row">
                 <a href="{{ route('profile.edit') }}" class="btn-secondary">Edit Profil</a>
             </div>
@@ -59,7 +62,7 @@
     </div>
 
     <!-- Features Section -->
-    <div class="info-card">
+    <div class="info-card mb-6">
         <p class="page-label">Fitur Utama</p>
         <h3>Apa yang Dapat Anda Lakukan</h3>
         <div class="feature-list">
@@ -79,9 +82,7 @@
     </div>
 
     <!-- Info Box -->
-    <div class="mt-6 rounded-lg border border-blue-200 bg-blue-50 px-6 py-4">
-        <p class="text-sm text-blue-800">
-            <strong>💡 Tip:</strong> Gunakan menu di sebelah kiri untuk navigasi ke halaman diagnosis dan edukasi. Jangan lupa untuk memperbarui profil Anda agar data selalu akurat.
-        </p>
+    <div class="alert-info">
+        <strong>💡 Tip:</strong> Gunakan menu di sebelah kiri untuk navigasi ke halaman diagnosis dan edukasi. Jangan lupa untuk memperbarui profil Anda agar data selalu akurat.
     </div>
 </x-app-layout>
